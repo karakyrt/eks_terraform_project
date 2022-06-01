@@ -1,1 +1,1 @@
-# eks_terraform_project
+# terraform_vpc
