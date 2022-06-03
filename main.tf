@@ -30,7 +30,7 @@ resource "aws_iam_role_policy_attachment" "eks-cluster-AmazonEKSClusterPolicy" {
 
 resource "aws_security_group" "eks-cluster" {
   name        = "SG-eks-cluster"
-  vpc_id      = "vpc-05a7766d3aa83a471"  
+  vpc_id      = "vpc-01e0650438ba358ab"  
 
 # Egress allows Outbound traffic from the EKS cluster to the  Internet 
 
@@ -62,7 +62,7 @@ resource "aws_eks_cluster" "eks_cluster" {
 
   vpc_config {             # Configure EKS with vpc and network settings 
    security_group_ids = ["${aws_security_group.eks-cluster.id}"]
-   subnet_ids         = ["subnet-02146caf4b508c363", "subnet-05daa564b226dcf6d"] 
+   subnet_ids         = ["subnet-0648d49dc8a91b9d1", "subnet-0037fda91b675c6f7", "subnet-0ed04483e488c794f"] 
     }
 
   depends_on = [
@@ -116,11 +116,11 @@ resource "aws_eks_node_group" "node" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
   node_group_name = "node_group1"
   node_role_arn   = aws_iam_role.eks_nodes.arn
-  subnet_ids      = ["subnet-0774838a7936f37f6", "subnet-02146caf4b508c363", "subnet-05daa564b226dcf6d"]
+  subnet_ids      = ["subnet-0648d49dc8a91b9d1", "subnet-0037fda91b675c6f7", "subnet-0ed04483e488c794f"]
 
   scaling_config {
-    desired_size = 1
-    max_size     = 1
+    desired_size = 3
+    max_size     = 3
     min_size     = 1
   }
 
