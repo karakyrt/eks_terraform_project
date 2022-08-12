@@ -16,7 +16,7 @@ resource "aws_launch_configuration" "cluster_eks" {
   associate_public_ip_address = false
   iam_instance_profile = aws_iam_instance_profile.node.name
   image_id = var.image_id
-  instance_type = "t3.medium"
+  instance_type = "t2.micro"
   name_prefix = "terraform-eks-${var.env}"
   security_groups = [aws_security_group.node.id]
   user_data_base64 = base64encode(local.node-userdata)
